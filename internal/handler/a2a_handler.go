@@ -72,11 +72,11 @@ func (h *A2AHandler) AgentCard(w http.ResponseWriter, r *http.Request) {
 	card := map[string]interface{}{
 		"name":        "Job Search Agent",
 		"description": "AI-powered job search agent that finds relevant job postings using natural language queries",
-		"url":         "https://your-domain.com", // Replace with your actual base URL
+		"url":         "https://involved-sheree-surgee-fcce11ee.koyeb.app", // Replace with your actual base URL
 		"version":     "1.0.0",
 		"provider": map[string]string{
-			"organization": "Your Organization",
-			"url":          "https://your-domain.com",
+			"organization": "justinndidit.org",
+			"url":          "https://involved-sheree-surgee-fcce11ee.koyeb.app",
 		},
 		"capabilities": map[string]bool{
 			"streaming":              false,
