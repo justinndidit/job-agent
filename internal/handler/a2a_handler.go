@@ -17,11 +17,11 @@ type A2AHandler struct {
 	telexAPIKey string
 }
 
-func NewA2AHandler(executor *agent.AgentExecutor, logger *zerolog.Logger, apiKey string) *A2AHandler {
+func NewA2AHandler(executor *agent.AgentExecutor, logger *zerolog.Logger) *A2AHandler {
 	return &A2AHandler{
-		executor:    executor,
-		logger:      logger,
-		telexAPIKey: apiKey,
+		executor: executor,
+		logger:   logger,
+		// telexAPIKey: apiKey,
 	}
 }
 
@@ -118,18 +118,18 @@ func (h *A2AHandler) AgentCard(w http.ResponseWriter, r *http.Request) {
 // HandleA2A processes all A2A protocol requests (POST /)
 func (h *A2AHandler) HandleA2A(w http.ResponseWriter, r *http.Request) {
 	// Authenticate
-	apiKey := r.Header.Get("X-AGENT-API-KEY")
-	if apiKey == "" {
-		h.logger.Warn().Msg("Missing API key")
-		h.sendError(w, nil, -32600, "Missing X-AGENT-API-KEY header")
-		return
-	}
+	// apiKey := r.Header.Get("X-AGENT-API-KEY")
+	// if apiKey == "" {
+	// 	h.logger.Warn().Msg("Missing API key")
+	// 	h.sendError(w, nil, -32600, "Missing X-AGENT-API-KEY header")
+	// 	return
+	// }
 
-	if h.telexAPIKey != "" && apiKey != h.telexAPIKey {
-		h.logger.Warn().Str("key", maskKey(apiKey)).Msg("Invalid API key")
-		h.sendError(w, nil, -32600, "Invalid API key")
-		return
-	}
+	// if h.telexAPIKey != "" && apiKey != h.telexAPIKey {
+	// 	h.logger.Warn().Str("key", maskKey(apiKey)).Msg("Invalid API key")
+	// 	h.sendError(w, nil, -32600, "Invalid API key")
+	// 	return
+	// }
 
 	// Parse request
 	var req A2ARequest

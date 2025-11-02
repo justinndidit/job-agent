@@ -29,9 +29,9 @@ func main() {
 		log.Fatal().Err(err).Msg("Failed to load config")
 	}
 
-	if cfg.TelexAPIKey == "" {
-		log.Warn().Msg("TELEX_API_KEY not set - A2A auth disabled")
-	}
+	// if cfg.TelexAPIKey == "" {
+	// 	log.Warn().Msg("TELEX_API_KEY not set - A2A auth disabled")
+	// }
 
 	// Initialize components
 	jobScraper := scraper.NewJobScraper(cfg.JobScraper, &log)
@@ -40,7 +40,7 @@ func main() {
 
 	// Initialize handlers
 	regularHandler := handler.NewHandler(executor, &log)
-	a2aHandler := handler.NewA2AHandler(executor, &log, cfg.TelexAPIKey)
+	a2aHandler := handler.NewA2AHandler(executor, &log) //, cfg.TelexAPIKey)
 
 	// Setup router
 	r := chi.NewRouter()
@@ -88,7 +88,7 @@ func main() {
 	go func() {
 		log.Info().
 			Str("port", cfg.Port).
-			Bool("telex_auth", cfg.TelexAPIKey != "").
+			// Bool("telex_auth", cfg.TelexAPIKey != "").
 			Msg("Starting A2A-compliant Job Search Agent")
 		if err := srv.ListenAndServe(); err != nil && err != http.ErrServerClosed {
 			log.Fatal().Err(err).Msg("Server failed")

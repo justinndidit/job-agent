@@ -6,9 +6,9 @@ import (
 )
 
 type Config struct {
-	Port        string
-	JobScraper  JobScraperConfig
-	TelexAPIKey string
+	Port       string
+	JobScraper JobScraperConfig
+	// TelexAPIKey string
 }
 
 type JobScraperConfig struct {
@@ -25,7 +25,7 @@ func Load() (*Config, error) {
 			RAPID_API_HOST:     os.Getenv("RAPID_API_HOST"),
 			RAPID_API_BASE_URL: os.Getenv("RAPID_API_BASE_URL"),
 		},
-		TelexAPIKey: os.Getenv("TELEX_API_KEY"),
+		// TelexAPIKey: os.Getenv("TELEX_API_KEY"),
 	}
 
 	// Validate required fields
